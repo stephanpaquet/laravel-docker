@@ -2,6 +2,7 @@
 
 ## Versions
 * Laravel Framework 8.74.0
+* MySQL Ver 14.14 Distrib 5.7.36
 * Composer version 2.1.14
 * PHP 7.4.26
 * Node v12.22.7
