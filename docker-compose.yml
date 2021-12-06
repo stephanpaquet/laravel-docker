@@ -1,24 +1,24 @@
-version: "3.7"
+version: "1.0"
 services:
   app:
     build:
       args:
-        user: sammy
+        user: stephan
         uid: 1000
       context: ./
       dockerfile: Dockerfile
-    image: travellist
-    container_name: travellist-app
+    image: laraveldocker
+    container_name: laraveldocker-app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
       - ./:/var/www
     networks:
-      - travellist
+      - laraveldocker
 
   db:
     image: mysql:5.7
-    container_name: travellist-db
+    container_name: laraveldocker-db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
@@ -30,7 +30,7 @@ services:
     volumes:
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
-      - travellist
+      - laraveldocker
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -42,11 +42,11 @@ services:
     ports:
       - "8080:80"
     networks:
-      - travellist
+      - laraveldocker
 
   nginx:
     image: nginx:alpine
-    container_name: travellist-nginx
+    container_name: laraveldocker-nginx
     restart: unless-stopped
     ports:
       - "8000:80"
@@ -54,9 +54,9 @@ services:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d
     networks:
-      - travellist
+      - laraveldocker
 
 networks:
-  travellist:
+  laraveldocker:
     driver: bridge
     
